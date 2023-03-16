@@ -1,0 +1,36 @@
+body{
+    background-color: rgba(41, 82, 188, 0.532);
+}
+#hesapmakinesi{
+    margin: 0 auto;
+    height: auto;
+    width: 400px;
+    background-color: aqua;
+    border: 2px solid;
+    border-radius: 5px;
+    padding: 10px;
+}
+#gösterge{
+    text-align: center;
+    padding: 10px 0px 10px 0px;
+
+}
+#sonuc{
+    border: 2px solid;
+    padding: 10px;
+    border-radius: 10px;
+    width: 80%;
+    text-align: right;
+    word-wrap: break-word;
+    font-size: 30px;
+}
+#buttonlar{
+    text-align: center;
+
+}
+button{
+    width: 80px;
+    height: 50px;
+    margin: 4px;
+    border-radius: 5px;
+}

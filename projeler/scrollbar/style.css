@@ -1,0 +1,36 @@
+*{
+    margin: 0px;
+    padding: 0px
+}
+div{
+    color: white;
+    padding: 50px;
+}
+body{
+    background: black;
+}
+h2{
+    color: white;
+    font-size: 3em;
+    padding: 20px;
+    
+}
+p{
+    color: white;
+    font-size: 2em;
+    font-family: sans-serif;
+}
+::-webkit-scrollbar{
+    width: 15px;
+    /*cubugun genişligi*/
+}
+::-webkit-scrollbar-thumb{
+    background: linear-gradient(transparent,#f90824,#b23232);
+    border: 2px solid black;
+    border-radius: 5px;
+    /* yan taraftaki cubuk*/
+}
+::-webkit-scrollbar-thumb:hover{
+    background: linear-gradient(transparent,#770312,#c06607);
+/* cubugun üstüne gelince rengi degişiyor*/
+}

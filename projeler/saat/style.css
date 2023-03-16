@@ -1,0 +1,52 @@
+body{
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    justify-content: center;
+    background-color:rgb(13, 67, 13) ;
+    overflow: hidden;
+}
+h2{
+    font-size: 20px;
+    letter-spacing:  4 px;
+    text-transform: uppercase;
+    text-align: center;
+    color: aquamarine;
+}
+.saatler{
+    display: flex;
+}
+.saatler div{
+    margin: 6px;
+    position: relative;
+}
+.saatler span{
+    width: 100px;
+    height: 80;
+    background: rgb(14, 146, 14);
+    margin: 3px;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+    display: flex;
+}
+.saatler #yazı{
+    height: 30px;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing:2px;
+    background: rgb(6, 6, 57);
+    opacity: 0.7;
+}
+.saatler #pmam{
+    bottom: 0;
+    position: absolute;
+    width: 50px;
+    height: 30px;
+    background: rgb(11, 11, 183);
+
+}
