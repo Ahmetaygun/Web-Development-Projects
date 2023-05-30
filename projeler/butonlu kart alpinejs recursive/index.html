@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.4.4/css/pico.min.css">
+    <title>Alpine-tab slider</title>
+    <style>
+        [x-cloak] { 
+            display: none !important;
+        }
+        nav[role=tablist] {
+            justify-content: flex-start;
+            user-select: none;
+            border-bottom: 1px solid var(--muted-border-color);
+            margin-bottom: var(--spacing);
+
+        }
+        a[role=button] {
+            color: blue;
+            border-bottom: 1px solid transparent;
+            transition: all var(--transition);
+            min-width: 520px;
+            text-align: center;
+            user-select: none;
+            background-color: white;
+        }
+        a[role=button].active {
+            color: var(--contrast);
+            border-radius: 0;
+            border-bottom: 1px solid var(--contrast);
+        }
+        a[role=button]:hover {
+            background: transparent;
+            color: red;
+        }
+        a[role=button]:focus {
+            background: transparent;
+            color: green;
+        }
+        div.grid div {
+            min-height: 200px;
+            animation-duration: 0.45s;
+            -webkit-animation-duration: 0.45s;
+            animation-fill-mode: both;
+            -webkit-animation-fill-mode: both;
+            -webkit-animation-name: slideIn;
+            animation-name: slideIn;
+        }
+        @keyframes slideIn {
+            0% {
+                transform: translateY(1rem);
+                opacity: 0;
+            }
+            100% {
+                transform:translateY(0rem);
+                opacity: 1;
+            }
+            0% {
+                transform: translateY(1rem);
+                opacity: 0;
+            }
+        }
+        @-webkit-keyframes slideIn {
+            0% {
+                -webkit-transform: transform;
+                -webkit-opacity: 0;
+            }
+            100% {
+                -webkit-transform: translateY(0);
+                -webkit-opacity: 1;
+            }
+            0% {
+                -webkit-transform: translateY(1rem);
+                -webkit-opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <section x-data="slider()">
+            <article x-ref="slider" data-interval="6000">
+                
+                <nav role="tablist">
+                    <ul>
+                        <li><a href="#" role="button">features</a></li>
+                        <li><a href="#" role="button">details</a></li>
+
+                    </ul>
+                </nav>
+                
+                <div class="grid">
+                    <div x-show="button == 0" x-cloak>
+                        <p>buton1 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam quo odit veritatis distinctio mollitia error, delectus minima exercitationem vitae minus maiores sapiente praesentium ut velit impedit beatae commodi soluta magni!</p>
+                    </div>
+                    <div x-show="button == 1" x-cloak>
+                        <p>buton 2Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam quo odit veritatis distinctio mollitia error, delectus minima exercitationem vitae minus maiores sapiente praesentium ut velit impedit beatae commodi soluta magni!</p>
+                    </div>
+                 </div>
+                
+            </article>
+        </section>
+    </main>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('slider', () => ({
+                
+                // set initial tab
+                button: 0,
+                
+                // slider tabs
+                tabs: [...document.querySelectorAll('nav[role=tablist] a[role=button]')],
+                
+                init() {
+                    // initialize main function
+                    this.changeSlide()
+                },
+                
+                // main function
+                changeSlide() {
+                    let timeInterval = this.$refs.slider.dataset.interval;
+                    this.tabs[this.button].setAttribute('class', 'active')
+                    
+                    // set interval to change slide
+                    let startInterval = () => {
+                        this.button = (this.button < this.tabs.length - 1)? this.button + 1 : 0;
+                        this.tabs.forEach( (button)=> {
+                            (this.button == this.tabs.indexOf(button)) ?  tab.setAttribute('class', 'active') : button.removeAttribute('class') 
+                        })
+                    }
+                    
+                    // start interval to change slide
+                    let slideInterval = setInterval(startInterval, timeInterval);
+                    
+                    // mouse over slider stops slide
+                    this.$refs.slider.onmouseover = () => {
+                        if (slideInterval) { 
+                            clearInterval(slideInterval)
+                            slideInterval = null;
+                        }
+                    }
+                    
+                    // mouse out slider starts again slide
+                    this.$refs.slider.onmouseout = () => {
+                        if (slideInterval === null) { 
+                            slideInterval = setInterval(startInterval, timeInterval);
+                        }
+                    }
+                    
+                    // slider tabs click event 
+                    this.tabs.forEach( (button)=> {
+                        button.addEventListener('click', (e)=> {
+                            e.preventDefault()
+                            this.button = this.tabs.indexOf(e.target)
+                            this.tabs.forEach( (button)=> {
+                                (this.button == this.tabs.indexOf(button)) ?  button.setAttribute('class', 'active') : button.removeAttribute('class') 
+                            }) 
+                        })
+                    })
+                }
+            }))
+        })
+    </script>
+</body>
+</html>
