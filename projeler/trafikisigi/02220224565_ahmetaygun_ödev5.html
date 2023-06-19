@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trafik Lambası</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        .container {
+            background-image: url(resim.png);
+            background-repeat: no-repeat;
+
+        }
+        .resimici{
+            padding-bottom: 300px;
+            margin-left: 300px;
+            margin-top: 200px;
+            font-size: 25px ;
+            font-weight: 900;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            display: flex;
+            align-items: center;
+        }
+
+        .traffic-light {
+            width: 100px;
+            height: 300px;
+            background-color: #444;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .light {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .button1 {
+            border: 3px solid black;
+            padding: 10px 10px;
+            margin: 5px;
+            background-color: red;
+            color: black;
+            border-radius: 20px;
+            
+        }
+        .button1:hover{
+            color: red;
+            box-shadow: 2px 5px 10px red;
+            background-color: black;
+        }
+        .button2 {
+            border: 3px solid black;
+            padding: 10px 10px;
+            margin: 5px;
+            background-color: yellow;
+            color: black;
+            border-radius: 20px;
+        }
+        .button2:hover{
+            color: yellow;
+            box-shadow: 2px 5px 10px yellow;
+            background-color: black;
+        }
+        .button3 {
+            border: 3px solid black;
+            padding: 10px 10px;
+            margin: 5px;
+            background-color: green;
+            color: black;
+            border-radius: 20px;
+        }
+        .button3:hover{
+            color: green;
+            box-shadow: 2px 5px 10px green;
+            background-color: black;
+        }
+        .active {
+            border-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="container " >
+        <div class="resimici">
+            <div class="traffic-light">
+                <div id="redLight" class="light"></div>
+                <div id="yellowLight" class="light"></div>
+                <div id="greenLight" class="light"></div>
+            </div>
+            <div class="button-group">
+                <button onclick="changeLight('red')" class="button1 col-12" id="redButton">Kırmızı</button>
+                <button onclick="changeLight('yellow')" class="button2 col-12" id="yellowButton">Sarı</button>
+                <button onclick="changeLight('green')" class="button3 col-12" id="greenButton">Yeşil</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function changeLight(color) {
+            var redLight = document.getElementById('redLight');
+            var yellowLight = document.getElementById('yellowLight');
+            var greenLight = document.getElementById('greenLight');
+
+            redLight.style.backgroundColor = 'black';
+            yellowLight.style.backgroundColor = 'black';
+            greenLight.style.backgroundColor = 'black';
+
+            var redButton = document.getElementById('redButton');
+            var yellowButton = document.getElementById('yellowButton');
+            var greenButton = document.getElementById('greenButton');
+
+            redButton.classList.remove('active');
+            yellowButton.classList.remove('active');
+            greenButton.classList.remove('active');
+
+            if (color === 'red') {
+                redLight.style.backgroundColor = 'red';
+                redButton.classList.add('active');
+            } else if (color === 'yellow') {
+                yellowLight.style.backgroundColor = 'yellow';
+                yellowButton.classList.add('active');
+            } else if (color === 'green') {
+                greenLight.style.backgroundColor = 'green';
+                greenButton.classList.add('active');
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>
